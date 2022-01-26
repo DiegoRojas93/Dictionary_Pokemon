@@ -1,4 +1,12 @@
-import '@styles/style.css';
-import '@images/pokemon_PNG26.png'
+import React from 'react';
+import ReactDom from 'react-dom';
 
-alert('Im Webpack')
+import '@styles/style.css';
+import pokemon from '@images/pokemon.png';
+
+const $root = document.querySelector('#root')
+
+ReactDom.render(<>
+  <h1 className='hello'>Hello React!</h1>
+  <img src={pokemon} alt="pokemon"/>
+</>, $root)
