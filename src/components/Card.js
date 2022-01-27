@@ -1,35 +1,33 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-import Pokemon from '@images/pokemon.png';
-
-
-export const Card = () => {
+export const Card = ({pokemon}) => {
 
   return (
-    <section className='card'>
+    <section className={`card ${pokemon.color}`}>
       <article className="card__pokemon">
 
         <div className="card__pokemon-info">
           <div className="container">
             <figure>
-              <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/25.png" alt="pokemon" />
+              <img src={pokemon.img} alt="pokemon" />
             </figure>
-            <h1>Name</h1>
-            <h2>Type</h2>
+            <h1>{pokemon.name}</h1>
+            <h2>Type: {pokemon.type}</h2>
             <div className="container__info">
               <div className="item">
-                <h3>Attact</h3>
-                <p>100</p>
+                <h3>Attack</h3>
+                <p>{pokemon.attack}</p>
               </div>
               <hr />
               <div className="item">
                 <h3>Defensive</h3>
-                <p>50</p>
+                <p>{pokemon.defensive}</p>
               </div>
               <hr />
               <div className='item'>
                 <h3>Speed</h3>
-                <p>100</p>
+                <p>{pokemon.speed}</p>
               </div>
             </div>
           </div>
@@ -38,3 +36,8 @@ export const Card = () => {
     </section>
   )
 };
+
+
+Card.propType = {
+  pokemon: PropTypes.object.isRequired
+}

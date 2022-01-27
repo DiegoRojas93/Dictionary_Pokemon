@@ -1,16 +1,9 @@
-import getPoke from "./utils/getPoke";
+import React from 'react';
+import ReactDom from 'react-dom';
 
-getPoke()
-  .then(resp => console.info(resp))
-  .catch(err => console.warn(err))
+import '@styles/style.css';
+import App from './App';
 
+const $root = document.querySelector('#root')
 
-// import React from 'react';
-// import ReactDom from 'react-dom';
-
-// import '@styles/style.css';
-// import App from './App';
-
-// const $root = document.querySelector('#root')
-
-// ReactDom.render(<App />, $root)
+ReactDom.render(<App />, $root)
