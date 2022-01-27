@@ -183,6 +183,11 @@ body {
   align-items: center;
 }
 
+.container__info hr {
+  width: 0.3rem;
+  background-color: black;
+}
+
 .card__pokemon img {
   transition: 0.3s linear;
   -webkit-transition: 0.3s linear;
