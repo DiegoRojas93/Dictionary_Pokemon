@@ -1,15 +1,12 @@
-const getPoke = async() => {
+const API = process.env.API;
+
+const getPoke = async( idPok = 25 ) => {
 
   try {
 
-    const resPoke = await fetch(`https://pokeapi.co/api/v2/pokemon/25`);
-    const colorPoke = await fetch(`https://pokeapi.co/api/v2/pokemon-species/25/`);
-
+    const resPoke = await fetch(`${API}${idPok}`);
 
     if (!resPoke.ok) throw { api: 'resPoke' ,status: resPoke.status, statusText: resPoke.statusText }
-
-    if (!colorPoke.ok) throw { api: 'colorPoke' ,status: resPoke.status, statusText: resPoke.statusText }
-
 
     const {
       id,
@@ -25,7 +22,7 @@ const getPoke = async() => {
       }
     } = await resPoke.json();
 
-    const {color: { name: color }} = await colorPoke.json()
+    // const {color: { name: color }} = await colorPoke.json()
 
 
     const { type:{name: type } } = types[0];
@@ -38,7 +35,7 @@ const getPoke = async() => {
       id,
       name,
       type,
-      color,
+      // color,
       img,
       attack: attackLevel,
       defensive: defenseLevel,

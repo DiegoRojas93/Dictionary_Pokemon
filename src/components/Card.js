@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 export const Card = ({pokemon}) => {
 
   return (
-    <section className={`card ${pokemon.color}`}>
+    <section className={`card ${pokemon.type}`}>
       <article className="card__pokemon">
 
         <div className="card__pokemon-info">
