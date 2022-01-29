@@ -1,16 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Card } from '@components/Card';
 import getPoke from '@utils/getPoke';
+import { useGetPoke } from '@hooks/useGetPoke';
 
 
 const App = () => {
-  const [ pokemon, setPokemon ] = useState({data: {}, loading: true})
-  let numRandom;
 
-  useEffect( () => {
-    getPoke()
-      .then( data => setPokemon({ data, loading: false}) )
-  }, [])
+  const { pokemon, setPokemon } = useGetPoke()
+
+  let numRandom;
 
   const handleClick = () => {
     numRandom = Math.round((Math.random() * 149) + 1);

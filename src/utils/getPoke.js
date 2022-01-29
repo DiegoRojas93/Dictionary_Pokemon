@@ -22,8 +22,6 @@ const getPoke = async( idPok = 25 ) => {
       }
     } = await resPoke.json();
 
-    // const {color: { name: color }} = await colorPoke.json()
-
 
     const { type:{name: type } } = types[0];
     const { base_stat: attackLevel } = stats[1];
@@ -35,7 +33,6 @@ const getPoke = async( idPok = 25 ) => {
       id,
       name,
       type,
-      // color,
       img,
       attack: attackLevel,
       defensive: defenseLevel,
