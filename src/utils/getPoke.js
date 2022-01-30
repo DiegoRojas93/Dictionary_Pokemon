@@ -1,12 +1,12 @@
 const API = process.env.API;
 
-const getPoke = async( idPok = 25 ) => {
+const getPoke = async( pokemon ) => {
 
   try {
 
-    const resPoke = await fetch(`${API}${idPok}`);
+    const res = await fetch(`${API}${pokemon}`);
 
-    if (!resPoke.ok) throw { api: 'resPoke' ,status: resPoke.status, statusText: resPoke.statusText }
+    if (!res.ok) throw { api: 'resPoke' ,status: res.status, statusText: res.statusText }
 
     const {
       id,
@@ -20,7 +20,7 @@ const getPoke = async( idPok = 25 ) => {
           }
         }
       }
-    } = await resPoke.json();
+    } = await res.json();
 
 
     const { type:{name: type } } = types[0];

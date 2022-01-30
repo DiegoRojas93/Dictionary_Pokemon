@@ -1,41 +1,26 @@
-import React, { useEffect } from 'react';
-import { Card } from '@components/Card';
-import getPoke from '@utils/getPoke';
-import { useGetPoke } from '@hooks/useGetPoke';
+import React, { useState, useEffect } from 'react';
+import GridCard from '@components/GridCard';
+import getPokeList from '@utils/getPokeList';
 
 
 const App = () => {
 
-  const { pokemon, setPokemon } = useGetPoke()
+  const [ list, setList ] = useState({ data: [], loading: true})
 
-  let numRandom;
+  useEffect( () => {
+    getPokeList()
+      .then( data => setList({ data, loading: false }) );
+  }, [])
 
-  const handleClick = () => {
-    numRandom = Math.round((Math.random() * 149) + 1);
-    getPoke(numRandom)
-      .then( data => setPokemon({ data, loading: false}) )
-  }
+  const { data, loading } = list;
 
   return (
-
     <div className='app'>
-      { pokemon.loading
-          ? (
-              <h1 className='app__container' >Cargando</h1>
-            )
-          : (
-            <>
-              <div className='app__container'>
-                <Card pokemon={pokemon.data}/>
-              </div>
-              <div className='app__container'>
-                <button onClick={handleClick} className={pokemon.data.type}>Reset</button>
-              </div>
-            </>
-          )
+      { loading
+          ? <h1 className="app__container">Cargando...</h1>
+          : <GridCard list={ data } className="app__container"/>
       }
     </div>
-
   )
 };
 
