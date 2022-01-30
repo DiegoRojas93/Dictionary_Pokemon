@@ -1,4 +1,6 @@
-const API = process.env.APILIST;
+import getPoke from "./getPoke";
+
+const API = process.env.API;
 
 const getPokeList = async() => {
 
@@ -10,12 +12,11 @@ const getPokeList = async() => {
 
     const { results } = await res.json();
 
-    const list = [];
+    let list =[];
 
-    for (const i of results) list.push(i.name);
+    for (const i of results) list.push( await getPoke(i.url))
 
-    return list;
-
+    return list
 
   } catch (error) {
 

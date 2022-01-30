@@ -1,51 +1,41 @@
-const API = process.env.API;
+// const API = process.env.API;
 
-const getPoke = async( pokemon ) => {
+const getPoke = async (url) => {
 
-  try {
+  const res = await fetch(`${url}`);
 
-    const res = await fetch(`${API}${pokemon}`);
+  if (!res.ok) throw { api: 'resPoke' ,status: res.status, statusText: res.statusText }
 
-    if (!res.ok) throw { api: 'resPoke' ,status: res.status, statusText: res.statusText }
-
-    const {
-      id,
-      name,
-      types,
-      stats,
-      sprites: {
-        other: {
-          home: {
-            front_default: img
-          }
+  const {
+    id,
+    name,
+    types,
+    stats,
+    sprites: {
+      other: {
+        home: {
+          front_default: img
         }
       }
-    } = await res.json();
+    }
+  } = await res.json();
 
 
-    const { type:{name: type } } = types[0];
-    const { base_stat: attackLevel } = stats[1];
-    const { base_stat: defenseLevel } = stats[2];
-    const { base_stat: speedLevel } = stats[5];
+  const { type:{name: type } } = types[0];
+  const { base_stat: attackLevel } = stats[1];
+  const { base_stat: defenseLevel } = stats[2];
+  const { base_stat: speedLevel } = stats[5];
 
-
-    return {
-      id,
-      name,
-      type,
-      img,
-      attack: attackLevel,
-      defensive: defenseLevel,
-      speed: speedLevel
-    };
-
-  } catch (error) {
-
-    let message = error.statusText || `Ocurrio un error`;
-    return `Error ${error.status}: ${message} en ${error.api}`
-  }
+  return {
+    id,
+    name,
+    type,
+    img,
+    attack: attackLevel,
+    defensive: defenseLevel,
+    speed: speedLevel
+  };
 }
-
 
 export default getPoke;
 

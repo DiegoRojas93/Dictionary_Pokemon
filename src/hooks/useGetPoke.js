@@ -1,24 +1,14 @@
 import { useEffect, useState} from "react";
-import getPoke from '@utils/getPoke';
+import getPokeList from "../utils/getPokeList";
 
-export const useGetPoke = (name) => {
+export const useGetPoke = () => {
 
-  // const [ pokemon, setPokemon ] = useState({data: {}, loading: true})
-
-  // useEffect( () => {
-  //   getPoke(name)
-  //     .then( data => setPokemon({ data, loading: false}) )
-
-  // }, [name])
-
-  const [ pokemon, setPokemon ] = useState({data: [], loading: true})
+  const [ list, setList ] = useState({ data: [], loading: true})
 
   useEffect( () => {
-    getPoke(name)
-      .then( data => setPokemon( state => { return { dataList: [...state.data, data], loading: false }} ))
-    }, [name]);
+    getPokeList()
+      .then( data => setList({ data , loading: false }));
+  }, [])
 
-  const { dataList, loading } = pokemon;
-
-  return { dataList, loading };
+  return list
 }

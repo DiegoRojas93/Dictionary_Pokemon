@@ -1,18 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import GridCard from '@components/GridCard';
-import getPokeList from '@utils/getPokeList';
+import { useGetPoke } from './hooks/useGetPoke';
 
 
 const App = () => {
 
-  const [ list, setList ] = useState({ data: [], loading: true})
-
-  useEffect( () => {
-    getPokeList()
-      .then( data => setList({ data, loading: false }) );
-  }, [])
-
-  const { data, loading } = list;
+  const { data, loading } = useGetPoke();
 
   return (
     <div className='app'>
