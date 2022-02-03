@@ -86,8 +86,8 @@ img {
 
 
 @font-face {
-  font-family: "abril";
-  src: url('/src/assets/fuentes/abril-fatface-v12-latin-regular.woff');
+  font-family: pokemon;
+  src: url('../assets/fuentes/Pokemon_Hollow.ttf') format('trueType');
   font-weight: normal;
   font-style: normal;
 }
@@ -97,7 +97,6 @@ body {
   min-height: 100vh;
   width: 100vw;
   height: 100vh;
-
 }
 
 #root {
@@ -107,7 +106,7 @@ body {
 
 header {
   width: 100%;
-  height: 6rem;
+  height: 8rem;
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-around;
@@ -115,6 +114,7 @@ header {
   position: fixed;
   top: -1px;
   z-index: 1;
+  background-color: #CC0000;
   border-bottom: 2px solid black;
 }
 
@@ -131,42 +131,37 @@ input {
 }
 
 .logo {
-  font-family: abril;
+  font-family: pokemon;
+  margin-top: 2rem;
 }
 
 .app {
-  height: max-content;
+  height: 100%;
   width: 100%;
   display: flex;
   justify-content: center;
   justify-items: center;
   flex-flow: row nowrap;
-  padding: 4rem 6rem;
+  padding: 8rem 1rem 2rem 1rem;
   margin-top: 6rem;
-}
-
-.app__container {
-  height: auto;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  justify-items: center;
 }
 
 .grid {
   width: 100%;
-  height: max-content;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 400px));
-  gap: 3rem 5rem;
-  grid-auto-rows: max-content;
+  max-height: max-content;
+  height: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
 }
 
 /*! card */
 
 .card {
+  min-width: 300px;
   width: 100%;
-  height: 60vh;
+  height: 100%;
+  margin-bottom: 3rem;
   overflow: hidden;
   position: relative;
   border-radius: 2rem;
@@ -293,7 +288,15 @@ input {
   }
 
   .app {
-    margin-top: 6rem;
+    width: 100%;
+    margin-top: 4rem;
+    padding: 4rem;
+  }
+
+  .card {
+    min-width: 400px;
+    width: 25%;
+    height: 80%;
   }
 
   .card__pokemon:hover img {
