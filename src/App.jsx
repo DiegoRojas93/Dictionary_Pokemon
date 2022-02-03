@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import GridCard from '@components/GridCard';
 import { useGetPoke } from './hooks/useGetPoke';
 import { Search } from './components/Search';
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css'
 
 
 const App = () => {
@@ -18,8 +20,12 @@ const App = () => {
       </header>
       <div className='app'>
         { loading
-            ? <h1 className="app__container">Cargando...</h1>
-            : <GridCard list={ data } value={value} className="app__container"/>
+            ? <div className="skeleton__center">
+                <Skeleton circle={true} className="skeleton__center-circle"/>
+                <Skeleton count={2}/>
+                <Skeleton height={100} />
+              </div>
+            : <GridCard list={ data } value={value}/>
         }
       </div>
     </>

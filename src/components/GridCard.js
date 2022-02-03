@@ -8,7 +8,7 @@ const GridCard = ({ list, value }) => {
     if (value === '') return pokemon
     if (pokemon.name.toLowerCase().includes(value.toLowerCase()) ) return pokemon.name
 
-  }).map( pokemon => <Card pokemon={pokemon} /> )
+  }).map( pokemon => <Card pokemon={pokemon} key={pokemon.id}/> )
 
   return (
     <div className="grid">
